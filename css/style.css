@@ -1,0 +1,37 @@
+*{
+  font-size: 16px;
+  font-family: Verdana, Arial, Tahoma, sans-serif;
+}
+
+html,body{
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+h1,h2{
+  display: block;
+}
+
+canvas#view{
+    margin-top: 20px;
+    border: 1px solid black;
+}
+
+footer{
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid #8fd6ff;
+    height: 100px;
+    display: block;
+}
+
+footer img{
+    margin-top: 5px;
+    height: 90px;
+    width: auto;
+}
