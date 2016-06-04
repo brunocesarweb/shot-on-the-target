@@ -12,9 +12,14 @@ $(function() {
         var view = viewPlay.getContext("2d");
         var color1 = "white";
         var color2 = "red";
-        var setTime = 2000;
         var ray = 10;
-        var shots = 10;
+        var remainingHTML = document.getElementById("remaining");
+        var onTheTargetHTML = document.getElementById("onTheTarget");
+        var remaining = document.getElementById("remaining").innerHTML;
+        var onTheTarget = document.getElementById("onTheTarget").innerHTML;
+
+        var shots = remaining;
+        var setTime = 2000;
 //End - Atributos
 
 //Métodos do jogo
@@ -29,8 +34,8 @@ $(function() {
             viewPlay.onclick = function(evento){
             var x = evento.pageX - viewPlay.offsetLeft;
             var y = evento.pageY - viewPlay.offsetTop;
-                console.log("pos X " + x);
-                console.log("pos Y " + y);
+            //console.log("pos X " + x);
+            //console.log("pos Y " + y);
             rulesOfGame(x, y);
           }; //onclick
         }; //end clickShoot
@@ -47,27 +52,37 @@ $(function() {
         }; //end structTarget
 
         var styleTarget = function(x, y, ray, color){
-                view.fillStyle = color;
-                view.beginPath();
-                view.arc(x, y, ray, 0, 2 * Math.PI);
-                view.fill();
+            view.fillStyle = color;
+            view.beginPath();
+            view.arc(x, y, ray, 0, 2 * Math.PI);
+            view.fill();
         }; //end styleTarget
 
         var rafflesPositionTarget = function(max){
-                    console.log("rafflesPositionTarget " + max);
-                    console.log("Math.floor(Math.random() * max) " + Math.floor(Math.random() * max));
+            //console.log("rafflesPositionTarget " + max);
+            //console.log("Math.floor(Math.random() * max) " + Math.floor(Math.random() * max));
             return Math.floor(Math.random() * max);
         }; //end rafflesPositionTarget
 
         var rulesOfGame = function(x, y){
-          //ammunition(shots);
+            //ammunition(shots);
+            //console.log('remaining ' + remaining);
+            //console.log('on The Target ' + onTheTarget);
+
           if ( shots <= 1){
+
             alert("You don't have ammunition, the game will be restarted!");
-            window.location.reload();
+            inTarget(x,y);
+            //window.location.reload();
+
           } else {
+
             shots = shots - 1;
+            remainingHTML.innerHTML = shots;
+            //onTheTargetHTML.innerHTML = onTheTarget;
             inTarget(x,y);
             return alert("You still have " + shots + " shots!");
+
           };
 
         }; //end rulesOfGame
@@ -75,7 +90,12 @@ $(function() {
         var inTarget = function(x, y){
           //Acerto
           if((x > positionX - ray) && (x < positionX + ray) && (y > positionY - ray) && (y < positionY + ray)){
-            return alert("Yes, you hit the target!");
+
+            onTheTarget  = parseInt(onTheTarget) + 1;
+            onTheTargetHTML.innerHTML = onTheTarget;
+            console.log('onTheTarget ' + onTheTargetHTML.innerHTML);
+            alert("Yes, you hit the target!");
+
           };
         }; //end inTarget
 
