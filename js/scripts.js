@@ -73,7 +73,8 @@ $(function() {
 
             alert("You don't have ammunition, the game will be restarted!");
             inTarget(x,y);
-            //window.location.reload();
+            alert("Game Over!");
+            window.location.reload();
 
           } else {
 
